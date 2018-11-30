@@ -15,7 +15,34 @@
     </ul>
   </form>
 <script>
+let cities = [];
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+fetch(endpoint)
+    .then(response => response.json())
+    .then(cityData => {
+      cities = cityData;
+      })
+
+const searchBar = document.querySelector('.search');
+let filteredList = [];
+const populate = function() {
+  filteredList = cities.filter(location => {
+    return location.city.toLowerCase().includes(this.value.toLowerCase()) || location.state.toLowerCase().includes(this.value.toLowerCase());
+    });
+  const ul = document.querySelector('.suggestions');
+  ul.innerHTML = "";
+  if (searchBar.value.length > 0) {
+    filteredList.forEach(place => {
+      const li = document.createElement('li');
+      li.innerHTML = `${place.city}, ${place.state} <span class="population">${Number(place.population).toLocaleString('en')}</span>`;
+      ul.appendChild(li)
+    })
+  } else {
+    ul.innerHTML = '<li>Filter for a city</li>\n<li>or a state</li>'
+  }
+}
+
+searchBar.addEventListener('input', populate);
 
 </script>
   </body>
