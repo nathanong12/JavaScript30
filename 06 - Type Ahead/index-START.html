@@ -34,7 +34,7 @@ const populate = function() {
   if (searchBar.value.length > 0) {
     filteredList.forEach(place => {
       const li = document.createElement('li');
-      li.innerHTML = `${place.city}, ${place.state} <span class="population">${Number(place.population).toLocaleString('en')}</span>`;
+      li.innerHTML = `<span class="name">${place.city}, ${place.state}</span> <span class="population">${Number(place.population).toLocaleString('en')}</span>`;
       ul.appendChild(li)
     })
   } else {
