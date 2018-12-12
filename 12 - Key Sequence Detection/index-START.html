@@ -7,6 +7,24 @@
 </head>
 <body>
 <script>
+  let consecutiveKeys = '';
+  // const targetSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter'].join('');
+  const targetSequence = 'nate';
+  window.addEventListener('keydown', (e) => {
+    consecutiveKeys += e.key;
+    if (!targetSequence.includes(consecutiveKeys)) {
+      if (targetSequence[0] === e.key) {
+        consecutiveKeys = e.key;
+      } else {
+        consecutiveKeys = '';
+      }
+    }
+    if (targetSequence === consecutiveKeys) {
+      console.log('DING!!!!!');
+      cornify_add();
+      consecutiveKeys = '';
+    }
+  });
 </script>
 </body>
 </html>
