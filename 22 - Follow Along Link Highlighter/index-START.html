@@ -25,7 +25,24 @@
       <p>Aliquam <a href="">dicta</a> sequi culpa fugiat <a href="">consequuntur</a> pariatur optio ad minima, maxime <a href="">odio</a>, distinctio magni impedit tempore enim repellendus <a href="">repudiandae</a> quas!</p>
     </div>
 
-  <script>
+<script>
+    const links = document.querySelectorAll('a');
+    const highlight = document.createElement('span');
+    highlight.classList.add('highlight');
+    document.body.append(highlight);
+    links.forEach(link => {
+      link.addEventListener('mouseenter', function(e) {
+        const position = this.getBoundingClientRect();
+        console.log(position);
+        highlight.style.height = `${position.height}px`;
+        highlight.style.width = `${position.width}px`;
+        highlight.style.transform = `translate(${scrollX + position.x}px, ${scrollY + position.y}px)`;
+        console.log(highlight.style);
+      });
+      // link.addEventListener('mouseout', function() {
+      //   this.classList.remove('highlight');
+      // })
+    });
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
   </script>
 </body>
